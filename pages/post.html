@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript ES6 Features | CodeCraft</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/post.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar (same as index.html) -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="../index.html" class="logo">K_Code</a>
+        <ul class="nav-links">
+          <li><a href="../index.html#home">Home</a></li>
+          <li><a href="../index.html#tutorials">Tutorials</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Post Header -->
+    <header class="post-header">
+      <div class="container">
+        <div class="post-meta">
+          <span class="category">JavaScript</span>
+          <span class="date">Published: June 15, 2023</span>
+          <span class="reading-time">8 min read</span>
+        </div>
+        <h1 class="post-title">
+          Mastering JavaScript ES6 Features: A Comprehensive Guide
+        </h1>
+        <div class="author-info">
+          <img
+            src="../public/image/karan.png"
+            alt="Author"
+            class="author-img"
+          />
+          <div>
+            <span class="author-name">Sarah Johnson</span>
+            <span class="author-title">Senior JavaScript Developer</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="post-container">
+      <article class="post-content">
+        <div class="container">
+          <!-- Featured Image -->
+          <figure class="featured-image">
+            <img
+              src="../public/image/pexels-technobulka-10816120.jpg"
+              alt="JavaScript ES6"
+            />
+            <figcaption>
+              Modern JavaScript development with ES6 features
+            </figcaption>
+          </figure>
+
+          <!-- Post Content -->
+          <p>
+            ECMAScript 2015, also known as ES6, brought significant changes to
+            the JavaScript language. In this comprehensive guide, we'll explore
+            the most important features that every modern JavaScript developer
+            should know.
+          </p>
+
+          <h2>Arrow Functions</h2>
+          <p>
+            Arrow functions provide a concise syntax for writing function
+            expressions. They don't have their own <code>this</code>,
+            <code>arguments</code>, <code>super</code>, or
+            <code>new.target</code>.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code1')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code1"><code class="javascript">// Traditional function
+function multiply(a, b) {
+    return a * b;
+}
+
+// Arrow function
+const multiply = (a, b) => a * b;
+
+// With single parameter (parentheses optional)
+const square = x => x * x;
+
+// With no parameters
+const greet = () => console.log('Hello!');
+
+// With multiple statements
+const sum = (a, b) => {
+    const result = a + b;
+    return result;
+};</code></pre>
+          </div>
+
+          <h2>Template Literals</h2>
+          <p>
+            Template literals provide an easy way to create multiline strings
+            and perform string interpolation.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code2')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code2"><code class="javascript">const name = 'Alice';
+const age = 28;
+
+// Old way
+const greeting = 'Hello, ' + name + '! You are ' + age + ' years old.';
+
+// With template literals
+const greeting = `Hello, ${name}! You are ${age} years old.`;
+
+// Multiline strings
+const message = `
+    This is a multiline
+    string in JavaScript.
+    No more \\n needed!
+`;</code></pre>
+          </div>
+
+          <h2>Destructuring Assignment</h2>
+          <p>
+            Destructuring allows you to unpack values from arrays or properties
+            from objects into distinct variables.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code3')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code3"><code class="javascript">// Array destructuring
+const colors = ['red', 'green', 'blue'];
+const [firstColor, secondColor] = colors;
+console.log(firstColor); // 'red'
+
+// Object destructuring
+const person = {
+    name: 'John',
+    age: 30,
+    city: 'New York'
+};
+const { name, age } = person;
+console.log(name); // 'John'
+
+// With renaming
+const { name: personName } = person;
+console.log(personName); // 'John'
+
+// Default values
+const { country = 'USA' } = person;
+console.log(country); // 'USA'</code></pre>
+          </div>
+
+          <h2>Default Parameters</h2>
+          <p>ES6 allows you to set default values for function parameters.</p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code4')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code4"><code class="javascript">// Before ES6
+function greet(name) {
+    name = name || 'Guest';
+    console.log('Hello, ' + name);
+}
+
+// With ES6 default parameters
+function greet(name = 'Guest') {
+    console.log(`Hello, ${name}`);
+}
+
+greet(); // Hello, Guest
+greet('Alice'); // Hello, Alice</code></pre>
+          </div>
+
+          <h2>Rest and Spread Operators</h2>
+          <p>
+            The rest parameter syntax allows us to represent an indefinite
+            number of arguments as an array.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code5')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code5"><code class="javascript">// Rest parameters
+function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
+
+// Spread operator with arrays
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = [...arr1, ...arr2]; // [1, 2, 3, 4, 5, 6]
+
+// Spread operator with objects
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+const merged = { ...obj1, ...obj2 }; // {a: 1, b: 2, c: 3, d: 4}</code></pre>
+          </div>
+
+          <div class="post-navigation">
+            <a href="postj.html" class="prev-post"
+              >&larr; Previous: Understanding JavaScript Closures</a
+            >
+            <a href="postre.html" class="next-post"
+              >Next: Modern React Patterns &rarr;</a
+            >
+          </div>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-widget">
+          <h3>About the Author</h3>
+          <div class="author-card">
+            <img src="public/image/karan.png" alt="Sarah Johnson" />
+            <h4>Sarah Johnson</h4>
+            <p>
+              Senior JavaScript Developer with 8+ years of experience.
+              Specializes in React, Node.js, and modern JavaScript frameworks.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>Related Posts</h3>
+          <div class="related-post">
+            <a href="#">
+              <h4>Understanding JavaScript Closures</h4>
+              <span class="post-date">May 10, 2023</span>
+            </a>
+          </div>
+          <div class="related-post">
+            <a href="#">
+              <h4>Modern React Patterns</h4>
+              <span class="post-date">July 22, 2023</span>
+            </a>
+          </div>
+          <div class="related-post">
+            <a href="#">
+              <h4>TypeScript for JavaScript Developers</h4>
+              <span class="post-date">August 5, 2023</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>Newsletter</h3>
+          <p>Subscribe to get the latest tutorials and updates</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit" class="btn">Subscribe</button>
+          </form>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <h2>Discussion (3)</h2>
+
+        <form class="comment-form">
+          <textarea placeholder="Join the discussion..." required></textarea>
+          <button type="submit" class="btn">Post Comment</button>
+        </form>
+
+        <div class="comments-list">
+          <div class="comment">
+            <div class="comment-author">
+              <img src="./public/image/karan.png" alt="User" />
+              <div>
+                <span class="author-name">Michael Chen</span>
+                <span class="comment-date">June 16, 2023</span>
+              </div>
+            </div>
+            <div class="comment-content">
+              <p>
+                Great article! The examples are very clear and helpful. I've
+                been using arrow functions but didn't realize they don't have
+                their own 'this' binding. That explains some issues I've been
+                having.
+              </p>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-author">
+              <img src="./public/image/karan.png" alt="User" />
+              <div>
+                <span class="author-name">Emma Rodriguez</span>
+                <span class="comment-date">June 17, 2023</span>
+              </div>
+            </div>
+            <div class="comment-content">
+              <p>
+                Could you do a follow-up on ES7 and ES8 features? I'd love to
+                see async/await explained in this same clear style.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>K_Code</h3>
+            <p>Empowering developers through quality content and community.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="index.html#tutorials">Tutorials</a></li>
+              <li><a href="index.html#projects">Projects</a></li>
+              <li><a href="index.html#about">About</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 K_Code. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/post.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

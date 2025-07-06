@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern React Patterns | CodeCraft</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/post.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">CodeCraft</a>
+        <ul class="nav-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#tutorials">Tutorials</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Post Header -->
+    <header class="post-header">
+      <div class="container">
+        <div class="post-meta">
+          <span class="category">React</span>
+          <span class="date">Published: July 22, 2023</span>
+          <span class="reading-time">10 min read</span>
+        </div>
+        <h1 class="post-title">
+          Modern React Patterns: Building Scalable Applications
+        </h1>
+        <div class="author-info">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="Author"
+            class="author-img"
+          />
+          <div>
+            <span class="author-name">Mike Chen</span>
+            <span class="author-title">React Specialist</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="post-container">
+      <article class="post-content">
+        <div class="container">
+          <!-- Featured Image -->
+          <figure class="featured-image">
+            <img
+              src="https://via.placeholder.com/1200x600"
+              alt="React Patterns"
+            />
+            <figcaption>
+              React application architecture with modern patterns
+            </figcaption>
+          </figure>
+
+          <!-- Introduction -->
+          <p>
+            React has evolved significantly since its inception, and with it,
+            the patterns we use to build applications have matured. In this
+            post, we'll explore modern React patterns that help create more
+            maintainable, scalable, and performant applications.
+          </p>
+
+          <h2>1. Component Composition</h2>
+          <p>
+            Composition is one of React's core strengths. Instead of creating
+            complex components that try to do too much, we can build small,
+            focused components and compose them together.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code1')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre
+              id="code1"
+            ><code class="javascript">// Bad: Monolithic component
+function UserProfile(props) {
+    return (
+        &lt;div className="profile"&gt;
+            &lt;div className="header"&gt;
+                &lt;img src={props.avatar} /&gt;
+                &lt;h1&gt;{props.name}&lt;/h1&gt;
+            &lt;/div&gt;
+            &lt;div className="content"&gt;
+                {/* Lots of profile content */}
+            &lt;/div&gt;
+        &lt;/div&gt;
+    );
+}
+
+// Good: Composed components
+function UserProfile(props) {
+    return (
+        &lt;ProfileContainer&gt;
+            &lt;ProfileHeader avatar={props.avatar} name={props.name} /&gt;
+            &lt;ProfileContent {...props} /&gt;
+        &lt;/ProfileContainer&gt;
+    );
+}</code></pre>
+          </div>
+
+          <h2>2. Custom Hooks for Logic Reuse</h2>
+          <p>
+            Custom hooks allow us to extract component logic into reusable
+            functions. This pattern helps reduce duplication and keeps
+            components focused on rendering.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code2')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre
+              id="code2"
+            ><code class="javascript">// Custom hook for form handling
+function useForm(initialValues) {
+    const [values, setValues] = useState(initialValues);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        });
+    };
+
+    const resetForm = () => {
+        setValues(initialValues);
+    };
+
+    return {
+        values,
+        handleChange,
+        resetForm
+    };
+}
+
+// Using the custom hook
+function LoginForm() {
+    const { values, handleChange } = useForm({
+        email: '',
+        password: ''
+    });
+
+    return (
+        &lt;form&gt;
+            &lt;input
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+            /&gt;
+            &lt;input
+                name="password"
+                type="password"
+                value={values.password}
+                onChange={handleChange}
+            /&gt;
+        &lt;/form&gt;
+    );
+}</code></pre>
+          </div>
+
+          <h2>3. Compound Components</h2>
+          <p>
+            Compound components work together to form a complete UI. This
+            pattern provides flexibility while maintaining an implicit shared
+            state.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code3')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre
+              id="code3"
+            ><code class="javascript">// Tabs component using compound pattern
+function Tabs({ children }) {
+    const [activeIndex, setActiveIndex] = useState(0);
+    
+    return React.Children.map(children, (child, index) => {
+        return React.cloneElement(child, {
+            isActive: index === activeIndex,
+            onSelect: () => setActiveIndex(index)
+        });
+    });
+}
+
+function Tab({ isActive, onSelect, children }) {
+    return (
+        &lt;button
+            onClick={onSelect}
+            style={{ fontWeight: isActive ? 'bold' : 'normal' }}
+        &gt;
+            {children}
+        &lt;/button&gt;
+    );
+}
+
+// Usage
+&lt;Tabs&gt;
+    &lt;Tab&gt;First Tab&lt;/Tab&gt;
+    &lt;Tab&gt;Second Tab&lt;/Tab&gt;
+    &lt;Tab&gt;Third Tab&lt;/Tab&gt;
+&lt;/Tabs&gt;</code></pre>
+          </div>
+
+          <h2>4. State Management with Context + useReducer</h2>
+          <p>
+            For medium-sized applications, combining Context with useReducer can
+            provide a lightweight alternative to libraries like Redux.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code4')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code4"><code class="javascript">// Create context
+const AppContext = createContext();
+
+// Reducer function
+function appReducer(state, action) {
+    switch (action.type) {
+        case 'ADD_TODO':
+            return {
+                ...state,
+                todos: [...state.todos, action.payload]
+            };
+        case 'REMOVE_TODO':
+            return {
+                ...state,
+                todos: state.todos.filter(todo => todo.id !== action.payload)
+            };
+        default:
+            return state;
+    }
+}
+
+// Context provider component
+function AppProvider({ children }) {
+    const [state, dispatch] = useReducer(appReducer, { todos: [] });
+
+    return (
+        &lt;AppContext.Provider value={{ state, dispatch }}&gt;
+            {children}
+        &lt;/AppContext.Provider&gt;
+    );
+}
+
+// Custom hook to use context
+function useAppContext() {
+    return useContext(AppContext);
+}
+
+// Usage in component
+function TodoList() {
+    const { state, dispatch } = useAppContext();
+
+    return (
+        &lt;div&gt;
+            {state.todos.map(todo => (
+                &lt;div key={todo.id}&gt;
+                    {todo.text}
+                    &lt;button onClick={() => dispatch({
+                        type: 'REMOVE_TODO',
+                        payload: todo.id
+                    })}&gt;
+                        Remove
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            ))}
+        &lt;/div&gt;
+    );
+}</code></pre>
+          </div>
+
+          <h2>5. Render Props Pattern</h2>
+          <p>
+            The render prop pattern allows components to share code by passing a
+            function as a prop. This is powerful for behavior encapsulation.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code5')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre
+              id="code5"
+            ><code class="javascript">// Mouse tracker with render prop
+function MouseTracker({ render }) {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e) => {
+        setPosition({
+            x: e.clientX,
+            y: e.clientY
+        });
+    };
+
+    return (
+        &lt;div style={{ height: '100vh' }} onMouseMove={handleMouseMove}&gt;
+            {render(position)}
+        &lt;/div&gt;
+    );
+}
+
+// Usage
+&lt;MouseTracker render={({ x, y }) => (
+    &lt;h1&gt;
+        The mouse position is ({x}, {y})
+    &lt;/h1&gt;
+)} /&gt;</code></pre>
+          </div>
+
+          <h2>6. Higher-Order Components (HOCs)</h2>
+          <p>
+            HOCs are functions that take a component and return a new component
+            with additional props or behavior.
+          </p>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>JavaScript</span>
+              <button class="copy-btn" onclick="copyCode('code6')">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre id="code6"><code class="javascript">// HOC for authentication
+function withAuth(WrappedComponent) {
+    return function(props) {
+        const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+        useEffect(() => {
+            // Check auth status
+            checkAuth().then(authStatus => {
+                setIsAuthenticated(authStatus);
+            });
+        }, []);
+
+        if (!isAuthenticated) {
+            return &lt;div&gt;Please log in to view this content&lt;/div&gt;;
+        }
+
+        return &lt;WrappedComponent {...props} /&gt;;
+    };
+}
+
+// Usage
+const PrivateProfile = withAuth(UserProfile);</code></pre>
+          </div>
+
+          <div class="post-navigation">
+            <a href="post.html" class="prev-post"
+              >&larr; Previous: JavaScript ES6 Features</a
+            >
+            <a href="#" class="next-post"
+              >Next: TypeScript for JavaScript Developers &rarr;</a
+            >
+          </div>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-widget">
+          <h3>About the Author</h3>
+          <div class="author-card">
+            <img src="https://via.placeholder.com/100" alt="Mike Chen" />
+            <h4>Mike Chen</h4>
+            <p>
+              React Specialist with 5+ years of experience building large-scale
+              applications. Core contributor to several open-source React
+              libraries.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>Related Posts</h3>
+          <div class="related-post">
+            <a href="post.html">
+              <h4>JavaScript ES6 Features</h4>
+              <span class="post-date">June 15, 2023</span>
+            </a>
+          </div>
+          <div class="related-post">
+            <a href="#">
+              <h4>TypeScript for JavaScript Developers</h4>
+              <span class="post-date">August 5, 2023</span>
+            </a>
+          </div>
+          <div class="related-post">
+            <a href="#">
+              <h4>State Management in 2023</h4>
+              <span class="post-date">September 12, 2023</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>React Resources</h3>
+          <ul class="resources-list">
+            <li>
+              <a
+                href="https://reactjs.org/docs/getting-started.html"
+                target="_blank"
+                >React Official Docs</a
+              >
+            </li>
+            <li>
+              <a href="https://beta.reactjs.org/" target="_blank"
+                >React Beta Docs</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/enaqx/awesome-react" target="_blank"
+                >Awesome React</a
+              >
+            </li>
+            <li>
+              <a href="https://reactpatterns.com/" target="_blank"
+                >React Patterns</a
+              >
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <h2>Discussion (5)</h2>
+
+        <form class="comment-form">
+          <textarea placeholder="Join the discussion..." required></textarea>
+          <button type="submit" class="btn">Post Comment</button>
+        </form>
+
+        <div class="comments-list">
+          <div class="comment">
+            <div class="comment-author">
+              <img src="https://via.placeholder.com/40" alt="User" />
+              <div>
+                <span class="author-name">Alex Turner</span>
+                <span class="comment-date">July 23, 2023</span>
+              </div>
+            </div>
+            <div class="comment-content">
+              <p>
+                Great overview of modern patterns! I've been using custom hooks
+                extensively but haven't explored compound components much. The
+                example you provided makes it look really useful for building
+                reusable UI kits.
+              </p>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-author">
+              <img src="https://via.placeholder.com/40" alt="User" />
+              <div>
+                <span class="author-name">Priya Patel</span>
+                <span class="comment-date">July 24, 2023</span>
+              </div>
+            </div>
+            <div class="comment-content">
+              <p>
+                Would love to see a more detailed comparison between
+                Context+useReducer and Redux Toolkit. When would you recommend
+                one over the other?
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>CodeCraft</h3>
+            <p>Empowering developers through quality content and community.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="index.html#tutorials">Tutorials</a></li>
+              <li><a href="index.html#projects">Projects</a></li>
+              <li><a href="index.html#about">About</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 CodeCraft. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/post.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>

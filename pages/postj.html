@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding JavaScript Fundamentals | CodeCraft</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+    <link rel="stylesheet" href="../styles/post.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="../index.html" class="logo">CodeCraft</a>
+        <ul class="nav-links">
+          <li><a href="../index.html#home">Home</a></li>
+          <li><a href="../index.html#tutorials">Tutorials</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Post Header -->
+    <header class="post-header">
+      <div class="container">
+        <div class="post-meta">
+          <span class="category">JavaScript</span>
+          <span class="date">Published: August 10, 2023</span>
+          <span class="reading-time">15 min read</span>
+        </div>
+        <h1 class="post-title">
+          Understanding JavaScript: Core Concepts Every Developer Should Know
+        </h1>
+        <div class="author-info">
+          <img
+            src="https://via.placeholder.com/50"
+            alt="Author"
+            class="author-img"
+          />
+          <div>
+            <span class="author-name">David Wilson</span>
+            <span class="author-title">JavaScript Architect</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="post-container">
+      <article class="post-content">
+        <div class="container">
+          <!-- Featured Image -->
+          <figure class="featured-image">
+            <img
+              src="https://via.placeholder.com/1200x600"
+              alt="JavaScript Fundamentals"
+            />
+            <figcaption>
+              JavaScript - The language that powers the modern web
+            </figcaption>
+          </figure>
+
+          <!-- Introduction -->
+          <p>
+            JavaScript is the backbone of modern web development. Whether you're
+            just starting or looking to solidify your foundation, understanding
+            these core concepts is essential for every developer.
+          </p>
+
+          <div class="concept-box">
+            <h2>Table of Contents</h2>
+            <ol class="toc-list">
+              <li><a href="#variables">Variables and Data Types</a></li>
+              <li><a href="#hoisting">Hoisting and Temporal Dead Zone</a></li>
+              <li><a href="#scope">Scope and Closures</a></li>
+              <li><a href="#functions">Functions and Arrow Functions</a></li>
+              <li><a href="#objects">Objects and Prototypes</a></li>
+              <li><a href="#async">Asynchronous JavaScript</a></li>
+              <li><a href="#es6">ES6+ Features</a></li>
+              <li><a href="#modules">Modules and Import/Export</a></li>
+            </ol>
+          </div>
+
+          <!-- Section 1 -->
+          <section id="variables">
+            <h2>1. Variables and Data Types</h2>
+            <p>
+              JavaScript has three ways to declare variables: <code>var</code>,
+              <code>let</code>, and <code>const</code>.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code1')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre id="code1"><code class="javascript">// Variable declarations
+var oldVariable = "I'm function scoped";
+let mutableVariable = "I can be reassigned";
+const constantVariable = "I cannot be reassigned";
+
+// Data Types
+const primitiveTypes = {
+    string: "Hello World",
+    number: 42,
+    boolean: true,
+    null: null,
+    undefined: undefined,
+    symbol: Symbol('unique'),
+    bigint: 9007199254740991n
+};
+
+// Complex Types
+const complexTypes = {
+    object: { key: "value" },
+    array: [1, 2, 3],
+    function: function() { return "I'm a function"; }
+};</code></pre>
+            </div>
+
+            <div class="concept-box important">
+              <h4>Key Points:</h4>
+              <ul>
+                <li>
+                  <code>let</code> and <code>const</code> are block-scoped
+                  (ES6+)
+                </li>
+                <li>
+                  <code>const</code> doesn't make objects immutable, just
+                  prevents reassignment
+                </li>
+                <li>
+                  JavaScript has dynamic typing (variables can change type)
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="hoisting">
+            <h2>2. Hoisting and Temporal Dead Zone</h2>
+            <p>
+              JavaScript moves variable and function declarations to the top of
+              their scope during compilation.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code2')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre
+                id="code2"
+              ><code class="javascript">// Function declaration is hoisted
+sayHello(); // Works
+function sayHello() {
+    console.log("Hello!");
+}
+
+// Variable declaration is hoisted but not initialization
+console.log(myVar); // undefined (not ReferenceError)
+var myVar = 5;
+
+// let/const are hoisted but in Temporal Dead Zone (TDZ)
+console.log(myLet); // ReferenceError
+let myLet = 10;</code></pre>
+            </div>
+
+            <div class="concept-box warning">
+              <h4>Common Pitfall:</h4>
+              <p>
+                Always declare variables before use. <code>let</code> and
+                <code>const</code> exist in TDZ until declaration.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="scope">
+            <h2>3. Scope and Closures</h2>
+            <p>
+              JavaScript has function scope (ES5) and block scope (ES6+).
+              Closures allow functions to remember their lexical scope.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code3')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre id="code3"><code class="javascript">// Global scope
+const globalVar = "I'm global";
+
+function outerFunction() {
+    // Outer function scope
+    const outerVar = "I'm outer";
+    
+    return function innerFunction() {
+        // Inner function scope
+        const innerVar = "I'm inner";
+        console.log(globalVar); // Can access global
+        console.log(outerVar); // Can access outer (closure)
+    };
+}
+
+const myClosure = outerFunction();
+myClosure(); // Still remembers outerVar</code></pre>
+            </div>
+
+            <div class="concept-box tip">
+              <h4>Practical Use:</h4>
+              <p>
+                Closures are used for data privacy, currying functions, and in
+                React hooks.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section 4 -->
+          <section id="functions">
+            <h2>4. Functions and Arrow Functions</h2>
+            <p>
+              Functions are first-class citizens in JavaScript. Arrow functions
+              (ES6+) have concise syntax and lexical <code>this</code>.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code4')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre id="code4"><code class="javascript">// Function declarations
+function traditionalFunction(a, b) {
+    return a + b;
+}
+
+// Function expression
+const anonymousFunction = function(a, b) {
+    return a + b;
+};
+
+// Arrow function
+const arrowFunction = (a, b) => a + b;
+
+// 'this' behavior
+const obj = {
+    name: "My Object",
+    traditionalMethod: function() {
+        console.log(this.name); // 'My Object'
+    },
+    arrowMethod: () => {
+        console.log(this.name); // undefined (lexical this)
+    }
+};</code></pre>
+            </div>
+          </section>
+
+          <!-- Section 5 -->
+          <section id="objects">
+            <h2>5. Objects and Prototypes</h2>
+            <p>
+              JavaScript uses prototypal inheritance. Objects can inherit
+              properties from other objects.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code5')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre id="code5"><code class="javascript">// Object literal
+const person = {
+    name: "Alice",
+    greet() {
+        console.log(`Hello, I'm ${this.name}`);
+    }
+};
+
+// Constructor function
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.greet = function() {
+    console.log(`Hello, I'm ${this.name}`);
+};
+
+const alice = new Person("Alice");
+
+// Class syntax (ES6)
+class ModernPerson {
+    constructor(name) {
+        this.name = name;
+    }
+    
+    greet() {
+        console.log(`Hello, I'm ${this.name}`);
+    }
+}
+
+const bob = new ModernPerson("Bob");</code></pre>
+            </div>
+
+            <div class="concept-box important">
+              <h4>Prototype Chain:</h4>
+              <p>
+                When accessing a property, JavaScript looks up the prototype
+                chain until it finds the property or reaches <code>null</code>.
+              </p>
+            </div>
+          </section>
+
+          <!-- Section 6 -->
+          <section id="async">
+            <h2>6. Asynchronous JavaScript</h2>
+            <p>
+              JavaScript is single-threaded but handles async operations with
+              callbacks, promises, and async/await.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code6')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre id="code6"><code class="javascript">// Callback (old way)
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("Data received");
+    }, 1000);
+}
+
+// Promise
+function fetchData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data received");
+        }, 1000);
+    });
+}
+
+// Async/Await (modern)
+async function getData() {
+    try {
+        const data = await fetchData();
+        console.log(data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Event loop example
+console.log("Start");
+setTimeout(() => console.log("Timeout"), 0);
+Promise.resolve().then(() => console.log("Promise"));
+console.log("End");
+
+// Output order:
+// Start
+// End
+// Promise
+// Timeout</code></pre>
+            </div>
+          </section>
+
+          <!-- Section 7 -->
+          <section id="es6">
+            <h2>7. ES6+ Features</h2>
+            <p>
+              Modern JavaScript introduced many powerful features that are now
+              essential.
+            </p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code7')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre id="code7"><code class="javascript">// Destructuring
+const { name, age } = { name: "Alice", age: 30 };
+
+// Spread/Rest
+const numbers = [1, 2, 3];
+const newNumbers = [...numbers, 4, 5];
+
+function sum(...nums) {
+    return nums.reduce((total, num) => total + num, 0);
+}
+
+// Template literals
+const greeting = `Hello ${name}, you are ${age} years old!`;
+
+// Default parameters
+function greet(name = "Guest") {
+    return `Hello ${name}!`;
+}
+
+// Modules (see next section)
+import { myFunction } from './myModule.js';</code></pre>
+            </div>
+          </section>
+
+          <!-- Section 8 -->
+          <section id="modules">
+            <h2>8. Modules and Import/Export</h2>
+            <p>JavaScript modules help organize code into reusable pieces.</p>
+
+            <div class="code-container">
+              <div class="code-header">
+                <span>JavaScript</span>
+                <button class="copy-btn" onclick="copyCode('code8')">
+                  <i class="far fa-copy"></i> Copy
+                </button>
+              </div>
+              <pre
+                id="code8"
+              ><code class="javascript">// mathUtils.js - Exporting
+export const PI = 3.14159;
+
+export function sum(a, b) {
+    return a + b;
+}
+
+// Default export
+export default function multiply(a, b) {
+    return a * b;
+}
+
+// app.js - Importing
+import { PI, sum } from './mathUtils.js';
+import multiply from './mathUtils.js'; // default import
+
+// Dynamic imports
+const loadModule = async () => {
+    const module = await import('./mathUtils.js');
+    console.log(module.sum(2, 3));
+};</code></pre>
+            </div>
+
+            <div class="concept-box tip">
+              <h4>Best Practice:</h4>
+              <p>
+                Use named exports for multiple utilities and default exports for
+                single-purpose modules.
+              </p>
+            </div>
+          </section>
+
+          <div class="post-navigation">
+            <a href="react-patterns.html" class="prev-post"
+              >&larr; Previous: Modern React Patterns</a
+            >
+            <a href="post.html" class="next-post"
+              >Next: TypeScript Fundamentals &rarr;</a
+            >
+          </div>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-widget">
+          <h3>About the Author</h3>
+          <div class="author-card">
+            <img src="https://via.placeholder.com/100" alt="David Wilson" />
+            <h4>David Wilson</h4>
+            <p>
+              JavaScript Architect with 10+ years of experience. Specializes in
+              core JavaScript, performance optimization, and teaching
+              fundamentals.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>JavaScript Resources</h3>
+          <ul class="resources-list">
+            <li>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                target="_blank"
+                >MDN JavaScript Docs</a
+              >
+            </li>
+            <li>
+              <a href="https://javascript.info/" target="_blank"
+                >Modern JavaScript Tutorial</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/getify/You-Dont-Know-JS"
+                target="_blank"
+                >You Don't Know JS (Book Series)</a
+              >
+            </li>
+            <li>
+              <a href="https://exploringjs.com/" target="_blank"
+                >Exploring JS (Books)</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>Practice Exercises</h3>
+          <div class="exercise">
+            <h4>Closure Challenge</h4>
+            <p>
+              Create a counter function that maintains its state using closures.
+            </p>
+            <button class="btn btn-small" onclick="toggleSolution('solution1')">
+              Show Solution
+            </button>
+            <div id="solution1" class="solution">
+              <pre><code class="javascript">function createCounter() {
+    let count = 0;
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+const counter = createCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2</code></pre>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>CodeCraft</h3>
+            <p>Empowering developers through quality content and community.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="../index.html#home">Home</a></li>
+              <li><a href="../index.html#tutorials">Tutorials</a></li>
+              <li><a href="../index.html#projects">Projects</a></li>
+              <li><a href="../index.html#about">About</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 CodeCraft. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script src="../scripts/post.js"></script>
+    <script>
+      hljs.highlightAll();
+
+      // Toggle solution visibility
+      function toggleSolution(id) {
+        const solution = document.getElementById(id);
+        solution.classList.toggle("show");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K_Code - Programming Blog</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo">K_Code</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#tutorials">Tutorials</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Welcome to K_Code</h1>
+        <p>
+          Your ultimate resource for coding tutorials, projects, and tech
+          insights
+        </p>
+        <a href="#tutorials" class="btn">Explore Tutorials</a>
+      </div>
+    </section>
+
+    <!-- Tutorials Section -->
+    <section id="tutorials" class="section">
+      <div class="container">
+        <h2>Latest Tutorials</h2>
+        <div class="tutorial-grid">
+          <article class="tutorial-card">
+            <img
+              src="./public/image/pexels-fauxels-3183165.jpg"
+              alt="JavaScript Tutorial"
+            />
+            <div class="card-content">
+              <h3>JavaScript ES6 Features</h3>
+              <p>
+                Learn about the latest ES6 features including arrow functions,
+                template literals, and more.
+              </p>
+              <a href="./pages/postj.html" class="read-more">Read More</a>
+            </div>
+          </article>
+          <article class="tutorial-card">
+            <img
+              src="./public/image/pexels-fauxels-3184423.jpg"
+              alt="CSS Tutorial"
+            />
+            <div class="card-content">
+              <h3>CSS Grid Layout</h3>
+              <p>
+                Master the CSS Grid layout system to create complex responsive
+                designs with ease.
+              </p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </article>
+          <article class="tutorial-card">
+            <img
+              src="./public/image/pexels-flodahm-699459.jpg"
+              alt="React Tutorial"
+            />
+            <div class="card-content">
+              <h3>React Hooks Guide</h3>
+              <p>
+                Understand how to use React Hooks to simplify your functional
+                components.
+              </p>
+              <a href="#" class="read-more">Read More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Example Section -->
+    <section class="code-section">
+      <div class="container">
+        <h2>Try This Code Example</h2>
+        <div class="code-container">
+          <div class="code-header">
+            <span>JavaScript</span>
+            <button class="copy-btn" onclick="copyCode('code1')">
+              <i class="far fa-copy"></i> Copy
+            </button>
+          </div>
+          <pre
+            id="code1"
+            class="code-block"
+          ><code>// Function to calculate factorial
+function factorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+// Example usage
+console.log(factorial(5)); // Output: 120</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <img
+              src="./public/image/pexels-nguyendesigner-236397.jpg"
+              alt="Project 1"
+            />
+            <div class="card-content">
+              <h3>Task Manager App</h3>
+              <p>
+                A full-stack task management application built with React and
+                Node.js.
+              </p>
+              <a href="#" class="btn">View Project</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <img
+              src="./public/image/pexels-shkrabaanthony-5816283.jpg"
+              alt="Project 2"
+            />
+            <div class="card-content">
+              <h3>Weather Dashboard</h3>
+              <p>Real-time weather information using the OpenWeather API.</p>
+              <a href="#" class="btn">View Project</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <h2>About K_Code</h2>
+        <p>
+          K_Code is a programming blog dedicated to helping developers of all
+          levels improve their skills. Our mission is to provide clear, concise,
+          and practical coding tutorials that you can apply to real-world
+          projects.
+        </p>
+        <p>
+          Founded in 2023, we've grown into a community of thousands of
+          developers who share our passion for clean code and continuous
+          learning.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>K_Code</h3>
+            <p>Empowering developers through quality content and community.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#tutorials">Tutorials</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#about">About</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 K_Code. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
