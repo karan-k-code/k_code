@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Code | CodeCraft</title>
+    <link rel="stylesheet" href="./utils/nav_fooder_css.css" />
+    <link rel="stylesheet" href="./styles/upload.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">CodeCraft</a>
+        <ul class="nav-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#tutorials">Tutorials</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="upload.html" class="active">Upload</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="upload-container">
+      <div class="container">
+        <h1>Upload Your Code</h1>
+        <p class="subtitle">Share your code snippets with the community</p>
+
+        <form id="uploadForm" class="upload-form">
+          <div class="form-group">
+            <label for="title">Title *</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              required
+              placeholder="My Awesome Algorithm"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              rows="3"
+              placeholder="Explain what your code does..."
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="language">Language *</label>
+              <select id="language" name="language" required>
+                <option value="">Select a language</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="csharp">C#</option>
+                <option value="cpp">C++</option>
+                <option value="php">PHP</option>
+                <option value="ruby">Ruby</option>
+                <option value="go">Go</option>
+                <option value="typescript">TypeScript</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="tags">Tags</label>
+              <input
+                type="text"
+                id="tags"
+                name="tags"
+                placeholder="algorithm, sorting, performance"
+              />
+              <small class="hint">Separate tags with commas</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="code">Your Code *</label>
+            <div class="code-editor-container">
+              <div class="editor-toolbar">
+                <button
+                  type="button"
+                  class="btn-toolbar"
+                  id="indent"
+                  title="Indent"
+                >
+                  <i class="fas fa-indent"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn-toolbar"
+                  id="comment"
+                  title="Toggle Comment"
+                >
+                  <i class="fas fa-comment"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn-toolbar"
+                  id="clear"
+                  title="Clear"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+                <span class="language-display" id="languageDisplay"
+                  >Plain Text</span
+                >
+              </div>
+              <textarea
+                id="code"
+                name="code"
+                required
+                spellcheck="false"
+              ></textarea>
+              <pre
+                class="syntax-highlight"
+              ><code id="highlightedCode"></code></pre>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Options</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" name="visibility" value="public" checked />
+                <span class="radio-label">Public (Visible to everyone)</span>
+              </label>
+              <label>
+                <input type="radio" name="visibility" value="unlisted" />
+                <span class="radio-label"
+                  >Unlisted (Only visible with link)</span
+                >
+              </label>
+              <label>
+                <input type="radio" name="visibility" value="private" />
+                <span class="radio-label">Private (Only visible to me)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span class="btn-text">Upload Code</span>
+              <span class="spinner hidden" id="spinner"></span>
+            </button>
+            <button type="button" class="btn btn-secondary" id="previewBtn">
+              Preview
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Preview Modal -->
+    <div class="modal" id="previewModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Code Preview</h2>
+          <button class="close-modal" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h3 id="previewTitle"></h3>
+          <p id="previewDescription" class="preview-description"></p>
+          <div class="preview-code-container">
+            <div class="preview-code-header">
+              <span id="previewLanguage"></span>
+              <button class="btn-copy" id="copyPreviewCode">
+                <i class="far fa-copy"></i> Copy
+              </button>
+            </div>
+            <pre class="preview-code"><code id="previewCode"></code></pre>
+          </div>
+          <div class="preview-tags" id="previewTags"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="backToEdit">
+            Back to Editing
+          </button>
+          <button class="btn btn-primary" id="confirmUpload">
+            Confirm Upload
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>CodeCraft</h3>
+            <p>Empowering developers through quality content and community.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="index.html#tutorials">Tutorials</a></li>
+              <li><a href="index.html#projects">Projects</a></li>
+              <li><a href="index.html#about">About</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 CodeCraft. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="./scripts/upload.js" type="module"></script>
+  </body>
+</html>

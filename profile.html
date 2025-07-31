@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile | CodeCraft</title>
+    <link rel="stylesheet" href="./utils/nav_fooder_css.css" />
+    <link rel="stylesheet" href="./styles/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">CodeCraft</a>
+        <ul class="nav-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#tutorials">Tutorials</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="profile.html" class="active">Profile</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <header class="profile-header">
+      <div class="container">
+        <div class="profile-banner">
+          <div class="banner-image" id="bannerImage"></div>
+          <button class="btn-edit-banner" id="editBannerBtn">
+            <i class="fas fa-camera"></i> Edit Cover
+          </button>
+        </div>
+
+        <div class="profile-info">
+          <div class="avatar-container">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="User Avatar"
+              class="profile-avatar"
+              id="profileAvatar"
+            />
+            <button class="btn-edit-avatar" id="editAvatarBtn">
+              <i class="fas fa-camera"></i>
+            </button>
+          </div>
+
+          <div class="profile-details">
+            <h1 id="userName">Alex Johnson</h1>
+            <p class="username" id="userUsername">@alexj</p>
+            <p class="bio" id="userBio">
+              Full-stack developer | Open source contributor | Coffee enthusiast
+            </p>
+
+            <div class="profile-stats">
+              <div class="stat">
+                <span class="stat-number" id="postCount">47</span>
+                <span class="stat-label">Posts</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" id="followerCount">1.2k</span>
+                <span class="stat-label">Followers</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number" id="followingCount">356</span>
+                <span class="stat-label">Following</span>
+              </div>
+            </div>
+
+            <div class="profile-actions">
+              <button class="btn btn-primary" id="editProfileBtn">
+                Edit Profile
+              </button>
+              <button class="btn btn-secondary" id="shareProfileBtn">
+                <i class="fas fa-share-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Profile Navigation -->
+    <nav class="profile-nav">
+      <div class="container">
+        <ul>
+          <li class="active" data-tab="posts"><a href="#">Posts</a></li>
+          <li data-tab="tutorials"><a href="#">Tutorials</a></li>
+          <li data-tab="projects"><a href="#">Projects</a></li>
+          <li data-tab="saved"><a href="#">Saved</a></li>
+          <li data-tab="about"><a href="#">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <main class="profile-content">
+      <div class="container">
+        <!-- Posts Tab -->
+        <div class="tab-content active" id="postsTab">
+          <div class="content-header">
+            <h2>Recent Activity</h2>
+            <div class="sort-options">
+              <select id="sortPosts">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="popular">Most Popular</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="posts-grid" id="postsGrid">
+            <!-- Posts will be loaded here dynamically -->
+          </div>
+
+          <div class="load-more">
+            <button class="btn btn-secondary" id="loadMorePosts">
+              Load More
+            </button>
+          </div>
+        </div>
+
+        <!-- Tutorials Tab -->
+        <div class="tab-content" id="tutorialsTab">
+          <div class="content-header">
+            <h2>My Tutorials</h2>
+            <button class="btn btn-primary" id="createTutorialBtn">
+              <i class="fas fa-plus"></i> New Tutorial
+            </button>
+          </div>
+
+          <div class="tutorials-list" id="tutorialsList">
+            <!-- Tutorials will be loaded here dynamically -->
+          </div>
+        </div>
+
+        <!-- Projects Tab -->
+        <div class="tab-content" id="projectsTab">
+          <div class="content-header">
+            <h2>My Projects</h2>
+            <button class="btn btn-primary" id="createProjectBtn">
+              <i class="fas fa-plus"></i> New Project
+            </button>
+          </div>
+
+          <div class="projects-grid" id="projectsGrid">
+            <!-- Projects will be loaded here dynamically -->
+          </div>
+        </div>
+
+        <!-- Saved Tab -->
+        <div class="tab-content" id="savedTab">
+          <div class="content-header">
+            <h2>Saved Items</h2>
+            <div class="saved-filters">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="tutorials">
+                Tutorials
+              </button>
+              <button class="filter-btn" data-filter="posts">Posts</button>
+              <button class="filter-btn" data-filter="projects">
+                Projects
+              </button>
+            </div>
+          </div>
+
+          <div class="saved-items" id="savedItems">
+            <!-- Saved items will be loaded here dynamically -->
+          </div>
+        </div>
+
+        <!-- About Tab -->
+        <div class="tab-content" id="aboutTab">
+          <div class="about-content">
+            <div class="about-section">
+              <h2>About Me</h2>
+              <p id="userAbout">
+                I'm a passionate full-stack developer with 5 years of experience
+                building web applications. I specialize in JavaScript, React,
+                Node.js, and Python. When I'm not coding, I enjoy hiking and
+                photography.
+              </p>
+            </div>
+
+            <div class="about-section">
+              <h2>Skills</h2>
+              <div class="skills-list" id="skillsList">
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">HTML/CSS</span>
+                <span class="skill-tag">MongoDB</span>
+              </div>
+            </div>
+
+            <div class="about-section">
+              <h2>Social Links</h2>
+              <div class="social-links" id="socialLinks">
+                <a href="#" class="social-link"
+                  ><i class="fab fa-github"></i> github.com/alexj</a
+                >
+                <a href="#" class="social-link"
+                  ><i class="fab fa-twitter"></i> twitter.com/alexj</a
+                >
+                <a href="#" class="social-link"
+                  ><i class="fab fa-linkedin"></i> linkedin.com/in/alexj</a
+                >
+              </div>
+            </div>
+
+            <div class="about-section">
+              <h2>Account Information</h2>
+              <div class="account-info">
+                <div class="info-item">
+                  <span class="info-label">Joined:</span>
+                  <span class="info-value" id="joinDate">January 2020</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Email:</span>
+                  <span class="info-value" id="userEmail"
+                    >alex.johnson@example.com</span
+                  >
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Location:</span>
+                  <span class="info-value" id="userLocation"
+                    >San Francisco, CA</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Edit Profile</h2>
+          <button class="close-modal" id="closeEditModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="editProfileForm">
+            <div class="form-group">
+              <label for="editName">Full Name</label>
+              <input type="text" id="editName" name="name" />
+            </div>
+
+            <div class="form-group">
+              <label for="editUsername">Username</label>
+              <input type="text" id="editUsername" name="username" />
+            </div>
+
+            <div class="form-group">
+              <label for="editBio">Bio</label>
+              <textarea id="editBio" name="bio" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="editAbout">About</label>
+              <textarea id="editAbout" name="about" rows="5"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="editLocation">Location</label>
+              <input type="text" id="editLocation" name="location" />
+            </div>
+
+            <div class="form-group">
+              <label>Skills (comma separated)</label>
+              <textarea id="editSkills" name="skills" rows="2"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Social Links</label>
+              <div class="social-inputs">
+                <div class="social-input">
+                  <i class="fab fa-github"></i>
+                  <input type="url" placeholder="GitHub URL" id="editGithub" />
+                </div>
+                <div class="social-input">
+                  <i class="fab fa-twitter"></i>
+                  <input
+                    type="url"
+                    placeholder="Twitter URL"
+                    id="editTwitter"
+                  />
+                </div>
+                <div class="social-input">
+                  <i class="fab fa-linkedin"></i>
+                  <input
+                    type="url"
+                    placeholder="LinkedIn URL"
+                    id="editLinkedin"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="cancelEditBtn"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>CodeCraft</h3>
+            <p>Empowering developers through quality content and community.</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html#home">Home</a></li>
+              <li><a href="index.html#tutorials">Tutorials</a></li>
+              <li><a href="index.html#projects">Projects</a></li>
+              <li><a href="index.html#about">About</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-github"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 CodeCraft. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./scripts/profile.js"></script>
+  </body>
+</html>
