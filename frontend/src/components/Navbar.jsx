@@ -31,7 +31,7 @@ export default function Navbar() {
       }
     }
 
-    const links = document.querySelectorAll('.nav-links a')
+    const links = document.querySelectorAll('a')
     links.forEach((l) => l.addEventListener('click', onAnchorClick))
     return () => links.forEach((l) => l.removeEventListener('click', onAnchorClick))
   }, [])

@@ -4,8 +4,11 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 // Local app styles (keeps small overrides)
 import './styles.css'
+import './post.css'
 // Import merged global styles (keeps everything inside frontend/ for Vite)
 import './styles/global.css'
+
+
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

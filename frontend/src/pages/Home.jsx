@@ -2,39 +2,10 @@ import React, { useEffect, useRef } from 'react'
 import TutorialCard from '../components/tutorial'
 import ProjectCard from '../components/projectcard'
 import HeroSecation from '../components/herosecation'
-
-
-const TutorialData=[{
-    id:1,
-    title:'JavaScript ES6 Features',
-    dec:'Learn about the latest ES6 features including arrow functions, template literals, and more.',
-    img:'image/pexels-fauxels-3183165.jpg'
-},{
-    id:2,
-    title:'CSS Grid Layout',
-    dec:'Master the CSS Grid layout system to create complex responsive designs with ease.',
-    img:'image/pexels-fauxels-3184423.jpg'
-},{
-    id:3,
-    title:'React Hooks Guide',
-    dec:'Understand how to use React Hooks to simplify your functional components.',
-    img:'image/pexels-flodahm-699459.jpg'
-},]
-
-const ProjectData=[{
-    id:1,
-    title:'Task Manager App',
-    dec:'A full-stack task management application built with React and Node.js.',
-    img:'image/pexels-nguyendesigner-236397.jpg'
-},{
-    id:2,
-    title:'Weather Dashboard',
-    dec:'Real-time weather information using the OpenWeather API.',
-    img:'image/pexels-shkrabaanthony-5816283.jpg'
-}]
-
-
-
+import {ProjectData,TutorialData} from '../components/data'
+import ContactUs from '../components/contact_us'
+import Footer from '../components/footer'
+import Code from '../components/code'
 
 export default function Home() {
   const codeRef = useRef(null)
@@ -44,7 +15,10 @@ export default function Home() {
     // close mobile nav when clicking a link is handled in Navbar
   }, [])
 
-  function copyCode() {
+  function copyCode(event) {
+
+    const btn = event.currentTarget
+
     const el = codeRef.current
     if (!el) return
     navigator.clipboard.writeText(el.textContent).then(() => {
@@ -53,6 +27,18 @@ export default function Home() {
       el.dataset.copied = 'true'
       setTimeout(() => (el.dataset.copied = original || ''), 1500)
     }).catch(err => console.error('copy failed', err))
+
+        // temporary UI feedback on the button
+    const originalHtml = btn.innerHTML
+    const originalBg = btn.style.backgroundColor
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!'
+    btn.style.backgroundColor = '#4CAF50'
+
+    setTimeout(() => {
+      btn.innerHTML = originalHtml
+      btn.style.backgroundColor = originalBg
+    }, 2000)
+
   }
 
   return (
@@ -89,6 +75,18 @@ function factorial(n) {
 // Example usage
 console.log(factorial(5)); // Output: 120`}</code></pre>
           </div>
+
+          {/* <Code language={'JavaScript'} code={`// Function to calculate factorial
+function factorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+// Example usage
+console.log(factorial(5)); // Output: 120`} /> */}
+
         </div>
       </section>
 
@@ -109,58 +107,9 @@ console.log(factorial(5)); // Output: 120`}</code></pre>
         </div>
       </section>
 
-      <section id="contact" className="section contact-section">
-        <div className="container">
-          <h2>Contact Us</h2>
-          <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('Thank you for your message! We will get back to you soon.'); e.currentTarget.reset(); }}>
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" name="name" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" className="btn">Send Message</button>
-          </form>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h3>K_Code</h3>
-              <p>Empowering developers through quality content and community.</p>
-            </div>
-            <div className="footer-section">
-              <h3>Quick Links</h3>
-              <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#tutorials">Tutorials</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-              </ul>
-            </div>
-            <div className="footer-section">
-              <h3>Connect</h3>
-              <div className="social-links">
-                <a href="#"><i className="fab fa-twitter"></i></a>
-                <a href="#"><i className="fab fa-github"></i></a>
-                <a href="#"><i className="fab fa-linkedin"></i></a>
-                <a href="#"><i className="fab fa-youtube"></i></a>
-              </div>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2025 K_Code. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <ContactUs/>
+      <Footer/>
     </div>
   )
 }
+
