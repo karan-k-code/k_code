@@ -7,14 +7,13 @@ import Post from './pages/Post'
 import Upload from './pages/Upload'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
-
 import Navbar from './components/Navbar'
 
 export default function App() {
   return (
-    <> 
-    <Navbar/>
-    <Routes>
+    <>
+      <Navbar/>
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -23,6 +22,6 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      </>
+    </>
   )
 }

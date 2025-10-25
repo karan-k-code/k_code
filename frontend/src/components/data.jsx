@@ -27,7 +27,6 @@ const ProjectData=[{
     img:'image/pexels-shkrabaanthony-5816283.jpg'
 }]
 
-
 const Tutorial={
   author:{
     id:'k1',

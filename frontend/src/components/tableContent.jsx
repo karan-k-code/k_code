@@ -16,10 +16,10 @@ export default function TableContent(props) {
 
 
   /* <li><a href="#variables">Variables and Data Types</a></li>
-              <li><a href="#hoisting">Hoisting and Temporal Dead Zone</a></li>
-              <li><a href="#scope">Scope and Closures</a></li>
-              <li><a href="#functions">Functions and Arrow Functions</a></li>
-              <li><a href="#objects">Objects and Prototypes</a></li>
-              <li><a href="#async">Asynchronous JavaScript</a></li>
-              <li><a href="#es6">ES6+ Features</a></li>
-              <li><a href="#modules">Modules and Import/Export</a></li> */
+     <li><a href="#hoisting">Hoisting and Temporal Dead Zone</a></li>
+     <li><a href="#scope">Scope and Closures</a></li>
+     <li><a href="#functions">Functions and Arrow Functions</a></li>
+     <li><a href="#objects">Objects and Prototypes</a></li>
+     <li><a href="#async">Asynchronous JavaScript</a></li>
+     <li><a href="#es6">ES6+ Features</a></li>
+     <li><a href="#modules">Modules and Import/Export</a></li> */
