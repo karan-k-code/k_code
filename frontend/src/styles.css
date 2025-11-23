@@ -1,5 +1,9 @@
 /* Global Styles */
 :root {
+  --card-bg-color: #d2d1d1;
+
+  --code-bg-color: #1e1e1e;
+
   --primary-color: #3498db;
   --secondary-color: #2c3e50;
   --accent-color: #e74c3c;
@@ -52,7 +56,7 @@
 }
 
 .tutorial-card {
-  background-color: var(--white);
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--box-shadow);
@@ -128,7 +132,7 @@
   padding: 20px;
   margin: 0;
   overflow-x: auto;
-  background-color: #1e1e1e;
+  background-color: var(--code-bg-color);
 }
 
 .code-block code {
@@ -147,7 +151,7 @@
 }
 
 .project-card {
-  background-color: var(--white);
+  background-color: var(--card-bg-color);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--box-shadow);
@@ -167,7 +171,7 @@
 
 /* About Section */
 .about-section {
-  background-color: var(--white);
+  background-color: var(--white-bg);
   text-align: center;
 }
 
@@ -180,32 +184,34 @@
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
-  background-color: var(--white);
+  background-color: var(--card-bg-color);
   padding: 30px;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
 }
 
-.form-group {
+.form-group-c {
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
+.form-group-c label {
+  /* display: block; */
+  /* margin-bottom: 5px; */
+  /* font-weight: 500; */
 }
 
-.form-group input,
-.form-group textarea {
+.form-group-c input,
+.form-group-c textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ddd;
+  border: var(--border-b);
+  background-color: var(--card-bg-color);
+  color: var(--body-text-color);
   border-radius: 5px;
   font-family: inherit;
 }
 
-.form-group textarea {
+.form-group-c textarea {
   resize: vertical;
   min-height: 150px;
 }

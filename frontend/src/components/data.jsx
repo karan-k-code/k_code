@@ -2,36 +2,74 @@ const TutorialData=[{
     id:1,
     title:'JavaScript ES6 Features',
     dec:'Learn about the latest ES6 features including arrow functions, template literals, and more.',
-    img:'image/pexels-fauxels-3183165.jpg'
+    img:'../image/pexels-fauxels-3183165.jpg'
 },{
     id:2,
     title:'CSS Grid Layout',
     dec:'Master the CSS Grid layout system to create complex responsive designs with ease.',
-    img:'image/pexels-fauxels-3184423.jpg'
+    img:'../image/pexels-fauxels-3184423.jpg'
 },{
     id:3,
     title:'React Hooks Guide',
     dec:'Understand how to use React Hooks to simplify your functional components.',
-    img:'image/pexels-flodahm-699459.jpg'
+    img:'../image/pexels-flodahm-699459.jpg'
 },]
 
 const ProjectData=[{
     id:1,
     title:'Task Manager App',
     dec:'A full-stack task management application built with React and Node.js.',
-    img:'image/pexels-nguyendesigner-236397.jpg'
-},{
+    img:'../image/pexels-nguyendesigner-236397.jpg'
+},
+{
     id:2,
     title:'Weather Dashboard',
     dec:'Real-time weather information using the OpenWeather API.',
-    img:'image/pexels-shkrabaanthony-5816283.jpg'
-}]
+    img:'../image/pexels-shkrabaanthony-5816283.jpg'
+},
+{
+    id:3,
+    title:'E-commers shop',
+    dec:'Real-time product data updata information usin.',
+    img:'../image/product_show.png'
+},
+{
+    id:4,
+    title:'Weather Dashboard',
+    dec:'Real-time weather information using the OpenWeather API.',
+    img:'../image/pexels-shkrabaanthony-5816283.jpg'
+},
+{
+    id:5,
+    title:'Weather Dashboard',
+    dec:'Real-time weather information using the OpenWeather API.',
+    img:'../image/pexels-shkrabaanthony-5816283.jpg'
+},
+{
+    id:6,
+    title:'Weather Dashboard',
+    dec:'Real-time weather information using the OpenWeather API.',
+    img:'../image/pexels-shkrabaanthony-5816283.jpg'
+},
+{
+    id:7,
+    title:'Weather Dashboard',
+    dec:'Real-time weather information using the OpenWeather API.',
+    img:'../image/pexels-shkrabaanthony-5816283.jpg'
+},
+{
+    id:8,
+    title:'Weather Dashboard',
+    dec:'Real-time weather information using the OpenWeather API.',
+    img:'../image/pexels-shkrabaanthony-5816283.jpg'
+},
+]
 
 const Tutorial={
   author:{
     id:'k1',
     name:'Karan Kumar',
-    img:'./image/karan_a.jpg',
+    img:'../image/karan_a.jpg',
     dec:'web developer',
     details:`JavaScript Architect with 10+ years of experience. Specializes in
                 core JavaScript, performance optimization, and teaching
@@ -41,7 +79,7 @@ const Tutorial={
   title:'Understanding JavaScript: Core Concepts Every Developer Should Know',
   dec:`JavaScript is the backbone of modern web development. Whether you're just starting or looking to solidify your foundation, understanding these core concepts is essential for every developer.'`,
   createDate:'August 10, 2024',
-  img:'image/pexels-technobulka-10816120.jpg',
+  img:'../image/pexels-technobulka-10816120.jpg',
   note:'JavaScript - The language that powers the modern web',
   content:[
     {

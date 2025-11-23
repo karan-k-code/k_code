@@ -8,13 +8,17 @@ import Footer from '../components/footer'
 import Code from '../components/code'
 
 export default function Home() {
+
+  // copy 
   const codeRef = useRef(null)
 
   useEffect(() => {
     // sticky navbar class handled globally in CSS/ Navbar
     // close mobile nav when clicking a link is handled in Navbar
+
   }, [])
 
+  // copy funcation is hear
   function copyCode(event) {
 
     const btn = event.currentTarget
@@ -45,6 +49,7 @@ export default function Home() {
     <div>
       <HeroSecation/>
 
+      {/* tutorials secation */}
       <section id="tutorials" className="section">
         <div className="container">
           <h2>Latest Tutorials</h2>
@@ -54,6 +59,8 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* semple code secation  */}
       <section className="code-section">
         <div className="container">
           <h2>Try This Code Example</h2>
@@ -90,15 +97,23 @@ console.log(factorial(5)); // Output: 120`} /> */}
         </div>
       </section>
 
+      {/* project card secation */}
       <section id="projects" className="section">
         <div className="container">
           <h2>Featured Projects</h2>
           <div className="project-grid">
-            {ProjectData.map((x,i)=><ProjectCard key={i} {...x}/>)}
+            {ProjectData.map((x,i)=>{
+
+              // Only show three project card.
+              if (i>2) {
+                return
+              }
+              return <ProjectCard key={i} {...x}/>})}
           </div>
         </div>
       </section>
 
+      {/* About secation */}
       <section id="about" className="section about-section">
         <div className="container">
           <h2>About K_Code</h2>
@@ -107,6 +122,7 @@ console.log(factorial(5)); // Output: 120`} /> */}
         </div>
       </section>
 
+      {/* contact us and footer secation  */}
       <ContactUs/>
       <Footer/>
     </div>
